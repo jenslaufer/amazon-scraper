@@ -2,8 +2,6 @@
 
 This scraper you can use without any programming skills. By using a Docker container, you can also integrate it into an existing application ecosystem.
 
-pl
-
 ## Installation
 
 **1. Install Docker**
@@ -28,8 +26,54 @@ Get the docker-compose.yml to run the application by copying the code fragment a
 docker-compose.yml or by cloning the whole project.
 
 ```yaml
+version: '3.0'
 
+services:
+  amazon-scraper:
+    image: jenslaufer/amazon-scraper:latest
+    container_name: amazon-scraper
+    ports:
+      - 8085:5000
+    environment:
+      - LOGLEVEL=$LOGLEVEL
+      - CONNECTOR_MAX_WORKERS=$CONNECTOR_MAX_WORKERS
+      - MONGODB_URI=mongodb://amazon-db/amazon
+      - SCRAPER_API_KEY=$SCRAPER_API_KEY
+    depends_on:
+      - amazon-db
+
+  amazon-scraper-webapp:
+    image: jenslaufer/scraper-webapp:latest
+    container_name: amazon-scraper-webapp
+    ports:
+      - 8089:8080
+    depends-on:
+      - amazon-scraper-webapp
+
+  amazon-db:
+    image: mongo:4
+    container_name: amazon-db
+    ports:
+      - 27017 #27017:27017 in case you want to access the mongodb from outsite
 ```
+
+**4. Start scraper application**
+
+Start the application by executing the docker-compose command in the directory where your docker-compose file is located.
+
+```shell
+docker-compose -d up
+```
+
+Compose fetches all containers which are needed to start the application. This takes a while and is depending on your internet connection.
+
+**5. Happy scraping**
+
+Once all containers are up and running get the following
+
+[http://localhost:8089](http://localhost:8089)
+
+Type in the keyword you want to scrape Amazon products for. You are able to dowload the results as CSV/JSON.
 
 ## Legal Issues
 

@@ -1,0 +1,29 @@
+version: '3.0'
+
+services:
+  amazon-scraper:
+    image: jenslaufer/amazon-scraper:latest
+    container_name: amazon-scraper
+    ports:
+      - 8085:5000
+    environment:
+      - LOGLEVEL=$LOGLEVEL
+      - CONNECTOR_MAX_WORKERS=$CONNECTOR_MAX_WORKERS
+      - MONGODB_URI=mongodb://amazon-db/amazon
+      - SCRAPER_API_KEY=$SCRAPER_API_KEY
+    depends_on:
+      - amazon-db
+
+  amazon-scraper-webapp:
+    image: jenslaufer/scraper-webapp:latest
+    container_name: amazon-scraper-webapp
+    ports:
+      - 8080:8080
+    depends-on:
+      - amazon-scraper-webapp
+
+  amazon-db:
+    image: mongo:4
+    container_name: amazon-db
+    ports:
+      - 27017:27017
