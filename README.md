@@ -1,6 +1,6 @@
 # Amazon Scraper: Webscraper for Amazon Products
 
-This scraper you can use without any programming skills. By using a Docker container, you can also integrate it into an existing application ecosystem.
+This scraper you can use without any programming skills. By using a Docker container, you can also integrate it into an existing application ecosystem, as it provides a REST API.
 
 ## Installation
 
