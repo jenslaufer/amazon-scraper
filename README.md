@@ -35,10 +35,8 @@ services:
     ports:
       - 8085:5000
     environment:
-      - LOGLEVEL=$LOGLEVEL
-      - CONNECTOR_MAX_WORKERS=$CONNECTOR_MAX_WORKERS
       - MONGODB_URI=mongodb://amazon-db/amazon
-      - SCRAPER_API_KEY=$SCRAPER_API_KEY
+      - SCRAPER_API_KEY=<YOUR-SCRAPER-API-KEÝ>
     depends_on:
       - amazon-db
 
@@ -47,7 +45,7 @@ services:
     container_name: amazon-scraper-webapp
     ports:
       - 8089:8080
-    depends-on:
+    depends_on:
       - amazon-scraper-webapp
 
   amazon-db:
@@ -57,7 +55,11 @@ services:
       - 27017 #27017:27017 in case you want to access the mongodb from outsite
 ```
 
-**4. Start scraper application**
+**4. Insert your Scraper API key**
+
+Replace <YOUR-SCRAPER-API-KEÝ> with your Scraper API key which you can get from their dashboard.
+
+**5. Start scraper application**
 
 Start the application by executing the docker-compose command in the directory where your docker-compose file is located.
 
@@ -67,7 +69,7 @@ docker-compose -d up
 
 Compose fetches all containers which are needed to start the application. This takes a while and is depending on your internet connection.
 
-**5. Happy scraping**
+**6. Happy scraping**
 
 Once all containers are up and running get the following
 

@@ -7,10 +7,8 @@ services:
     ports:
       - 8085:5000
     environment:
-      - LOGLEVEL=$LOGLEVEL
-      - CONNECTOR_MAX_WORKERS=$CONNECTOR_MAX_WORKERS
       - MONGODB_URI=mongodb://amazon-db/amazon
-      - SCRAPER_API_KEY=$SCRAPER_API_KEY
+      - SCRAPER_API_KEY=<YOUR-SCRAPER-API-KEÝ>
     depends_on:
       - amazon-db
 
@@ -18,12 +16,12 @@ services:
     image: jenslaufer/scraper-webapp:latest
     container_name: amazon-scraper-webapp
     ports:
-      - 8080:8080
-    depends-on:
+      - 8089:8080
+    depends_on:
       - amazon-scraper-webapp
 
   amazon-db:
     image: mongo:4
     container_name: amazon-db
     ports:
-      - 27017:27017
+      - 27017 #27017:27017 in case you want to access the mongodb from outsite
