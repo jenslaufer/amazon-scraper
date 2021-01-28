@@ -1,6 +1,21 @@
 # Amazon Scraper: Webscraper for Amazon Products
 
-This scraper you can use without any programming skills. By using a Docker container, you can also integrate it into an existing application ecosystem, as it provides a REST API.
+This scraper saves you time as it's ready to use without complicated installation. It's for everybody from non-programmers to professionals who want to integrate the scraper into their existing application ecosystem.
+
+You can perform product scraping based on a search query through a REST API or a Web UI. The results you can dowload as CSV or JSON for further analysis.
+
+These features are retrieved:
+
+- Title
+- ASIN
+- URL
+- Categories
+- Average Rating
+- Number of Ratings
+- Price
+- Best Seller Rank
+- Dimensions
+- Weight
 
 ## Installation
 
